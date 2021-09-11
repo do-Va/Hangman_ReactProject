@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# **`Hangman`**
 
-## Available Scripts
+![](_images/Hangman.gif)
 
-In the project directory, you can run:
+A React hangman game exercise.
 
-### `npm start`
+## **`Part Zero: Setup, Startup, Read Code`**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Install the required packages:
+   - `$ cd react-hangman`
+   - `$ npm install`
+2. Start the application:
+   - `$ npm start`
+3. Play the game. It is functional, but always uses the same word (“apple”) as the secret word.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+4. Read over the code: there is only one component, `Hangman`, in `Hangman.js`.
 
-### `npm test`
+## **`Part One: Add A Key`**
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Currently, the buttons don’t have a key prop. Fix this issue!
 
-### `npm run build`
+## **`Part Two: Number of Wrong Guesses`**
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Above the currently-guessed word, we’d like to show the number of wrong guesses, like “Number wrong: 3.” Add this.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## **`Part Three: End Game on Loss`**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The game only comes (by default) with 6 gallows images and therefore should only allow six wrong guesses. However, it allows players to keep making guesses after this (and there’s a bug, in that the gallows images disappears after there are too many wrong).
 
-### `npm run eject`
+Change the behavior of the game so that after six wrong guesses, it no longer shows the button area. Instead, it should show the message “You lose” and reveal the correct word.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Do this without hard-coding “6” in as the number of guesses — instead, use the prop for `maxGuesses`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## **`Part Four: Alt Text`**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Add an alt attribute to the hangman image that explains how many guesses have been made, inc case the images don’t load. Something like “5/6” or “5 wrong guesses”
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## **`Part Five: Use a Random Word`**
 
-## Learn More
+The game right now always uses the word “apple” as the secret word. There’s a file, words.js, with a list of words and a function to return a random word. Incorporate this so that the game uses this to choose a secret word.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## **`Part Six: Add “Restart” Button`**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Add a button that will restart the game. This should pick a new random word and reset the guessed list and number of wrong guesses.
 
-### Code Splitting
+### **`Further Study`**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Imagine that other games use a sequence of buttons with letters on them. It would be nice if the buttons could be reusable components.
 
-### Analyzing the Bundle Size
+Refactor the app, adding an `AlphaButtons` component.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+The `AlphaButtons` component renders a sequence of buttons corresponding to letters (in Hangman that would be “a” through “z”). The Hangman component should keep track of which letters have been guessed.
 
-### Making a Progressive Web App
+### **`Additional Ideas`**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Add a message if the player wins (guesses all the letters)
+- Add more CSS styling
